@@ -14,6 +14,7 @@ public class SimpleDBGetTask extends SimpleDBTask {
   private String attributes;
   private String delimiter = ",";
   private String propertyPrefix;
+  private boolean consistentRead = true;
 
   @Override
   public void execute() throws BuildException {
@@ -43,6 +44,7 @@ public class SimpleDBGetTask extends SimpleDBTask {
     request.setDomainName(getDomain());
     request.setItemName(itemName);
     request.setAttributeNames(attributeNames);
+    request.setConsistentRead(consistentRead);
     return request;
   }
 
@@ -106,5 +108,13 @@ public class SimpleDBGetTask extends SimpleDBTask {
 
   public void setPropertyPrefix(String propertyPrefix) {
     this.propertyPrefix = propertyPrefix;
+  }
+
+  public boolean isConsistentRead() {
+    return consistentRead;
+  }
+
+  public void setConsistentRead(boolean consistentRead) {
+    this.consistentRead = consistentRead;
   }
 }
